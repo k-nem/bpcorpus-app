@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% set active_page = "text" %}
+
+{% block content %}
+
+  <h2 class="title">{{ output['meta']['title'] }}</h2>
+  <h4 class="author" ><a href="{{url_for('author', id = output['meta']['author_id'])}}">{{ output['meta']['author_name'] }}</a></h4>
+  <div class="actions">
+    <a type="button" class="btn btn-outline-secondary btn-sm openmeta" href="{{url_for('xml_download', id = output['meta']['id'])}}" target="_blank">XML/TEI</a> <!-- download="{{output['id']}}.xml" -->
+    <a type="button" class="btn btn-outline-secondary btn-sm openmeta" href="{{url_for('text_download', id = output['meta']['id'])}}" target="_blank">Спрошчаны TXT</a>
+
+    <button type="button" class="btn btn-outline-secondary btn-sm openmeta" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <span class="collapsed">
+       Аб тэксце
+     </span>
+     <span class="expanded">
+       Схаваць падрабязнасці
+     </span>
+    </button>
+
+  </div>
+
+
+
+<div class="collapse" id="collapseExample">
+  <div class="card card-body meta">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 50%">Атрыбут</th>
+          <th scope="col" style="width: 50%">Значэнне</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">ID тэкста</th>
+          <td>{{ output['meta']['id'] }}</td>
+        </tr>
+        <tr>
+          <th scope="row">ID аўтара</th>
+          <td>{{ output['meta']['author_id'] }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Жанр</th>
+          <td>
+            {% if output['meta']["genre"] %}
+              {{output['meta']["genre"]}}
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Выданне</th>
+          <td>
+            {% if output['meta']["edition"] %}
+              {{output['meta']["edition"]}}
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Год выдання</th>
+          <td>
+            {% if output['meta']["pub_year"] %}
+              {{output['meta']["pub_year"]}}
+            {% endif %}
+            </td>
+        </tr>
+        <tr>
+          <th scope="row">Час стварэння</th>
+          <td>
+            {% if output['meta']["cr_year"] %}
+              {{output['meta']["cr_year"]}}
+            {% endif %}
+            </td>
+        </tr>
+        <tr>
+          <th scope="row">Першая публікацыя</th>
+          <td>
+            {% if output['meta']["fp_year"] %}
+              {{output['meta']["fp_year"]}}
+            {% endif %}
+            </td>
+        </tr>
+        <tr>
+          <th scope="row">Крыніца</th>
+          <td>
+            {% if output['meta']['url'] %}
+            <a href="{{output['meta']['url']}}" target="_blank">
+              Беларуская палічка
+            </a>
+            {% endif %}
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+  <div class="body">
+
+  {{ output['txt'] | safe }}
+
+</div>
+
+
+
+{% endblock %}

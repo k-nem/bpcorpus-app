@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% set active_page = "authors" %}
+
+{% block content %}
+
+<table class="table table-hover">  <!--table-striped -->
+  <thead>
+    <tr>
+      <th style="width: 4%">ID</th>
+      <th style="width: 60%">Імя</th>
+      <th style="width: 36%" class="text-end">Колькасць твораў</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for row in output['authors'] %}
+   <tr onclick="window.location='{{url_for('author', id = row['id'])}}';" role="button">
+     <td class="text-muted">
+       {{row['id']}}
+     </td>
+
+     <td>
+       <!-- <a href="{{url_for('author', id = row['id'])}}" class="text-dark"> -->
+         {{row['name']}}
+
+     </td>
+
+     <td class="text-end">
+       {{row['work_count']}}
+     </td>
+   </tr>
+
+
+
+    {% endfor %}
+
+    </tbody>
+    </table>
+
+
+
+{% endblock %}

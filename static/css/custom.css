@@ -1,0 +1,141 @@
+* {
+font-family: 'PT Serif';}
+
+.badge {
+  font-weight: normal;
+  background-color: CornflowerBlue;
+}
+
+span.stanza p {
+  line-height: 60%;
+}
+
+.navbar {
+  padding: 10px 40px;
+}
+
+a.navbar-brand {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#content {
+  padding: 40px 0px 20px 0px;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+h4.author {
+  font-style: italic;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+h4.author a {
+  color: #6c757d;
+}
+
+h4.author a:hover {
+  color: DarkSlateGray;
+}
+
+button.openmeta, a.openmeta, a.alist {
+  border-color: CornflowerBlue;
+  color: CornflowerBlue;
+}
+
+button.openmeta:hover, a.openmeta:hover {
+  border-color: CornflowerBlue;
+  background-color: CornflowerBlue;
+}
+
+span.name {
+  font-style: italic;
+  font-size: 100%;
+}
+
+.actions {
+
+}
+
+.body {
+
+  margin-top: 40px;
+  display: block;
+}
+
+.token {
+  cursor: pointer;
+}
+
+
+span.epigraph {
+  display: block;
+  margin-bottom: 20px;
+}
+
+span.epigraph p {
+  font-style: italic;
+  font-size: 80%;
+  line-height: 30%;
+}
+
+span.italic, span.timestamp {
+  font-style: italic;
+  line-height: 70%;
+  display: block;
+}
+
+.footnotes {
+  border-top: 1px dotted;
+  margin-top: 30px;
+  padding-top: 30px;
+  display: block;
+}
+
+.footnotes p {
+  font-style: italic;
+}
+
+.footer {
+  border-top: 1px solid Gainsboro;
+  padding: 20px 40px;
+  margin-top: auto;
+  height: 64px;
+}
+
+
+.footer .left {
+  float: left;
+}
+
+.footer .left a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.footer .right {
+  float: right;
+}
+
+.flex-wrapper {
+  display: flex;
+  min-height: calc(100% - 64px);
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.meta {
+  margin: 20px 0 0 0;
+}
+
+h3.search {
+  margin: 40px 0px 20px 0px;
+}
+
+[aria-expanded="false"] > .expanded,
+[aria-expanded="true"] > .collapsed {
+  display: none;
+}

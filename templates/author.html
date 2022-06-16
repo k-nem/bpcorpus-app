@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h2><span class="small text-muted">#{{ output['id'] }}</span> {{ output['name'] }}</h2>
+
+  {% if output['texts'] %}
+
+    <table class="table table-hover">
+
+      <tr>
+        <th style="width: 4%">ID</th>
+        <th style="width: 30%">Назва</th>
+        <th style="width: 10%">Жанр</th>
+        <th style="width: 10%">Створаны</th>
+        <th style="width: 10%">Выдадзены</th>
+        <th style="width: 24%">Выданне</th>
+        <th style="width: 12%">Файлы</th>
+
+      </tr>
+
+      {% for row in output['texts'] %}
+        <tr onclick="window.location='{{url_for('text', id = row['id'])}}';" role="button">
+          <td class="text-muted">{{row["id"]}}</td>
+          <td>
+            <!-- <a href="{{url_for('text', id = row['id'])}}">{{row["title"]}}</a> -->
+            {{row["title"]}}
+            {% if row["tr_author_name"]%}
+            <br/>
+            <span class="small text-muted"><i>Пераклад
+              {% if row["tr_lang"]%} з
+                {% if row["tr_lang"] == "pl"%}польскай{% elif row["tr_lang"] == "uk" %}украінскай{% elif row["tr_lang"] == "lat" %}лацінскай{% elif row["tr_lang"] == "ru" %}рускай{% elif row["tr_lang"] == "yi" %}ідышу{% elif row["tr_lang"] == "de" %}нямецкай{% endif %}
+              {% else %}{% endif %}- {{row["tr_author_name"]}}
+            </i></span>
+            {% endif %}
+          </td>
+
+          <td>{{row["genre"]}}</td>
+          <td>
+            {% if row["cr_year"] %}
+              {{row["cr_year"]}}
+            {% endif %}
+          </td>
+          <td>
+            {% if row["pub_year"] %}
+              {{row["pub_year"]}}
+            {% endif %}
+          </td>
+          <td>
+            {% if row["edition"]%}
+            <small>{{row["edition"]}}</small>
+            {% endif %}
+          </td>
+          <td>
+            <a type="button" class="btn btn-outline-secondary btn-sm alist" href="{{url_for('xml_download', id = row['id'])}}">XML</a>
+            <a type="button" class="btn btn-outline-secondary btn-sm alist" href="{{url_for('text_download', id = row['id'])}}">TXT</a>
+          </td>
+        </tr>
+      {% endfor %}
+
+    </table>
+
+
+  {% endif %}
+
+
+{% endblock %}

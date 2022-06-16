@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% set active_page = "search" %}
+
+
+
+{% block content %}
+
+<h2>Пошук</h2>
+
+
+<form method="POST">
+
+  <div class="mb-3 mt-3">
+    <label for="wsearch" class="form-label">Запыт</label>
+    <input type="text" class="form-control " id="wsearch" placeholder="Дакладная або пачатковая форма слова (напрыклад, «паненка»)" name="wsearch">
+  </div>
+<!-- <button type="submit" class="btn btn-primary">Шукаць</button> -->
+</form>
+
+
+  {% if output %}
+
+  <h3 class="search">Знойдзен(а) {{ output | length }} твор(аў) па запыце «<strong>{{ query }}</strong>»</h3>
+
+    {% for res in output%}
+      <p class = "search">
+        <a class = "search" href="{{url_for('text', id = res['id'])}}" target="_blank">{{ res['title'] }}</a><br/>
+        {{ res['author_name'] }}
+      </p>
+    {% endfor%}
+
+
+  {% else %}
+
+    {% if new %}
+
+    {% elif resp %}
+
+    <p>{{resp}}</p>
+
+    {% else %}
+
+    <p>Па запыце «<strong>{{ query }}</strong>» нічога не знойдзена. Паспрабуйце змяніць запыт.</p>
+
+    {% endif %}
+
+  {% endif %}
+
+
+{% endblock %}
