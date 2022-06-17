@@ -4,12 +4,15 @@ from flask import g
 from flask import Response
 import json
 import sys
+from os import path
+
+ROOT = path.dirname(path.realpath(__file__))
 
 db = 'bpc.sqlite3'
 app = Flask(__name__)
 
 def execSql(db, query, var):
-    con = sqlite3.connect(db)
+    con = sqlite3.connect(path.join(ROOT, db))
     con.row_factory = sqlite3.Row
     cur = con.cursor()
     if var:
@@ -23,7 +26,7 @@ def execSql(db, query, var):
     return rows
 
 def connect(db):
-    con = sqlite3.connect(db)
+    con = sqlite3.connect(path.join(ROOT, db))
     con.row_factory = sqlite3.Row
     cur = con.cursor()
 
@@ -44,11 +47,14 @@ def author(id):
 
     tq = 'select * from text_meta where author_id = (?)'
     rows = execSql(db, tq, id)
-    aid = rows[0]['author_id']
-    an = rows[0]['author_name']
+    if rows:
+        aid = rows[0]['author_id']
+        an = rows[0]['author_name']
 
-    return render_template('author.html', output = {'id': aid, 'name': an, 'texts': rows})
+        return render_template('author.html', output = {'id': aid, 'name': an, 'texts': rows})
 
+    else:
+        return render_template('404.html'), 404
 
 @app.route ('/text/<id>', methods=['GET', 'POST'])
 def text(id):
@@ -59,7 +65,11 @@ def text(id):
     txq = 'select html from text_files where id = (?)'
     txt = execSql(db, txq, id)[0][0]
 
-    return render_template('text.html', output = {'meta': meta[0], 'txt': txt})
+    if meta:
+        return render_template('text.html', output = {'meta': meta[0], 'txt': txt})
+
+    else:
+        return render_template('404.html'), 404
 
 @app.route ('/search')
 def search():
@@ -74,7 +84,7 @@ def search_post():
         sq = 'select id, author_name, title from text_meta where id in (select id from search where wordlist MATCH (?))'
         results = execSql(db, sq, query)
 
-        return render_template('search.html', output = results, query = query)
+        return render_template('search.html', output = results, query = query, num = len(results))
 
     elif not query:
         return render_template('search.html', new = True)
@@ -98,8 +108,10 @@ def text_download(id):
         return rows[0]
     return app.response_class(generate(id), mimetype='text/plain')
 
-
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     app.run(host = '127.0.0.1', port = 5000, debug = True)
-    home()
+    authors()

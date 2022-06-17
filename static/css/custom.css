@@ -11,7 +11,7 @@ span.stanza p {
 }
 
 .navbar {
-  padding: 10px 40px;
+  padding: 10px 20px;
 }
 
 a.navbar-brand {
@@ -20,7 +20,21 @@ a.navbar-brand {
 }
 
 #content {
-  padding: 40px 0px 20px 0px;
+  padding: 40px 0px 60px 0px;
+}
+
+a.big {
+  background-color: CornflowerBlue;
+  color: white;
+}
+
+a.big:hover {
+  background-color: RoyalBlue;
+  color: white;
+}
+
+div.main{
+  
 }
 
 h2 {
@@ -30,7 +44,6 @@ h2 {
 h4.author {
   font-style: italic;
   font-size: 1.2em;
-  margin-bottom: 20px;
 }
 
 h4.author a {
@@ -56,13 +69,19 @@ span.name {
   font-size: 100%;
 }
 
-.actions {
-
+span.translation {
+  display: inline-block;
+  font-style: italic;
+  margin-bottom: 30px;
 }
 
-.body {
+/* .actions {
+} */
 
-  margin-top: 40px;
+
+
+.body {
+  margin: 40px 0px;
   display: block;
 }
 

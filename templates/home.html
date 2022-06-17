@@ -1,8 +1,39 @@
 {% extends "base.html" %}
-{% set active_page = "search" %}
+{% set active_page = "home" %}
 
 {% block content %}
 
+<h2>Прывітанне!</h2>
+<p>
+Гэта прататып вэб-інтэрфейса корпуса беларускай паэзіі XVIII–XX вв. <br>
+Вы можаце выкарыстоўваць спіс аўтараў або пошук па слову, каб знайсці патрэбныя тэксты.
+</p>
+<a type="button" class="btn big" href="{{url_for('search')}}">Да пошуку</a>
+<hr style="margin: 30px 0px 20px 0px;">
+<div class="main">
+  <div class="row">
+    <div class="col">
+      <h3>Рэпазітары</h3>
+      <p>Тэксты, база дадзеных і частотныя слоўнікі<br><a href="https://github.com/k-nem/bpcorpus" target="_blank">github.com/k-nem/bpcorpus</a></p>
+      <p>Код для збору тэкстаў і зыходныя файлы<br><a href="https://github.com/k-nem/bpcorpus-collect" target="_blank">github.com/k-nem/bpcorpus-collect</a></p>
+      <p>Код вэб-інтэрфейсу<br><a href="https://github.com/k-nem/bpcorpus-app" target="_blank">github.com/k-nem/bpcorpus-app</a></p>
+    </div>
+    <div class="col">
+      <h3>Парады</h3>
+      <ul>
+        <li>
+          Каб знайсці ўсе формы слова, трэба ўвесці яго пачатковую форму
+        </li>
+        <li>
+          На старонцы тэксту можна націснуць на спасылку "Аб тэксце", каб убачыць інфармацыю аб файле
+        </li>
+        <li>
+          Калі курсор наведзены на слова, з'яўляецца яго морфасінтаксічная анатацыя
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 
 {% endblock %}

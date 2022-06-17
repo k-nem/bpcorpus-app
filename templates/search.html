@@ -20,7 +20,13 @@
 
   {% if output %}
 
-  <h3 class="search">Знойдзен(а) {{ output | length }} твор(аў) па запыце «<strong>{{ query }}</strong>»</h3>
+  <h3 class="search">
+    Знойдзен{% if num == 1 %}{% else %}а{% endif %}
+    {{ output | length }}
+    твор{% if num == 1 %}{% elif num > 1 and num < 4 %}а{% else %}аў{% endif %}
+    па запыце
+    «<strong>{{ query }}</strong>»
+  </h3>
 
     {% for res in output%}
       <p class = "search">

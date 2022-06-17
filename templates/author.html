@@ -22,34 +22,33 @@
 
       {% for row in output['texts'] %}
         <tr onclick="window.location='{{url_for('text', id = row['id'])}}';" role="button">
-          <td class="text-muted">{{row["id"]}}</td>
+          <td class="text-muted">{{row['id']}}</td>
           <td>
-            <!-- <a href="{{url_for('text', id = row['id'])}}">{{row["title"]}}</a> -->
-            {{row["title"]}}
-            {% if row["tr_author_name"]%}
+            {{row['title']}}
+            {% if row['tr_author_name']%}
             <br/>
-            <span class="small text-muted"><i>Пераклад
-              {% if row["tr_lang"]%} з
-                {% if row["tr_lang"] == "pl"%}польскай{% elif row["tr_lang"] == "uk" %}украінскай{% elif row["tr_lang"] == "lat" %}лацінскай{% elif row["tr_lang"] == "ru" %}рускай{% elif row["tr_lang"] == "yi" %}ідышу{% elif row["tr_lang"] == "de" %}нямецкай{% endif %}
-              {% else %}{% endif %}- {{row["tr_author_name"]}}
+            <span class="small text-muted"><i>Перакладчык
+              {% if row['tr_lang']%} з
+                {% if row['tr_lang'] == "pl"%}польскай{% elif row['tr_lang'] == "uk" %}украінскай{% elif row['tr_lang'] == "lat" %}лацінскай{% elif row['tr_lang'] == "ru" %}рускай{% elif row['tr_lang'] == "yi" %}ідышу{% elif row['tr_lang'] == "de" %}нямецкай{% endif %}
+              {% else %}{% endif %}— {{row['tr_author_name']}}
             </i></span>
             {% endif %}
           </td>
 
-          <td>{{row["genre"]}}</td>
+          <td>{{row['genre']}}</td>
           <td>
-            {% if row["cr_year"] %}
-              {{row["cr_year"]}}
+            {% if row['cr_year'] %}
+              {{row['cr_year']}}
             {% endif %}
           </td>
           <td>
-            {% if row["pub_year"] %}
-              {{row["pub_year"]}}
+            {% if row['pub_year'] %}
+              {{row['pub_year']}}
             {% endif %}
           </td>
           <td>
-            {% if row["edition"]%}
-            <small>{{row["edition"]}}</small>
+            {% if row['edition']%}
+            <small>{{row['edition']}}</small>
             {% endif %}
           </td>
           <td>
@@ -60,7 +59,6 @@
       {% endfor %}
 
     </table>
-
 
   {% endif %}
 

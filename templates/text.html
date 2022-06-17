@@ -5,6 +5,15 @@
 
   <h2 class="title">{{ output['meta']['title'] }}</h2>
   <h4 class="author" ><a href="{{url_for('author', id = output['meta']['author_id'])}}">{{ output['meta']['author_name'] }}</a></h4>
+
+  {% if output['meta']['tr_author_name']%}
+  <span class="translation">Перакладчык
+    {% if output['meta']['tr_lang']%} з
+      {% if output['meta']['tr_lang'] == "pl"%}польскай{% elif output['meta']['tr_lang'] == "uk" %}украінскай{% elif output['meta']['tr_lang'] == "lat" %}лацінскай{% elif output['meta']['tr_lang'] == "ru" %}рускай{% elif output['meta']['tr_lang'] == "yi" %}ідышу{% elif output['meta']['tr_lang'] == "de" %}нямецкай{% endif %}
+    {% else %}{% endif %}— {{output['meta']['tr_author_name']}}
+  </span>
+  {% endif %}
+
   <div class="actions">
     <a type="button" class="btn btn-outline-secondary btn-sm openmeta" href="{{url_for('xml_download', id = output['meta']['id'])}}" target="_blank">XML/TEI</a> <!-- download="{{output['id']}}.xml" -->
     <a type="button" class="btn btn-outline-secondary btn-sm openmeta" href="{{url_for('text_download', id = output['meta']['id'])}}" target="_blank">Спрошчаны TXT</a>
@@ -19,8 +28,6 @@
     </button>
 
   </div>
-
-
 
 <div class="collapse" id="collapseExample">
   <div class="card card-body meta">
@@ -43,53 +50,78 @@
         <tr>
           <th scope="row">Жанр</th>
           <td>
-            {% if output['meta']["genre"] %}
-              {{output['meta']["genre"]}}
+            {% if output['meta']['genre'] %}
+              {{output['meta']['genre']}}
             {% endif %}
           </td>
         </tr>
+
+        {% if output['meta']['edition'] %}
         <tr>
           <th scope="row">Выданне</th>
           <td>
-            {% if output['meta']["edition"] %}
-              {{output['meta']["edition"]}}
-            {% endif %}
+
+              {{output['meta']['edition']}}
+
           </td>
         </tr>
+        {% endif %}
+
+        {% if output['meta']['pub_year'] %}
         <tr>
           <th scope="row">Год выдання</th>
           <td>
-            {% if output['meta']["pub_year"] %}
-              {{output['meta']["pub_year"]}}
-            {% endif %}
+              {{output['meta']['pub_year']}}
             </td>
         </tr>
+        {% endif %}
+
+        {% if output['meta']['cr_year'] %}
         <tr>
           <th scope="row">Час стварэння</th>
           <td>
-            {% if output['meta']["cr_year"] %}
-              {{output['meta']["cr_year"]}}
-            {% endif %}
+              {{output['meta']['cr_year']}}
             </td>
         </tr>
+        {% endif %}
+
+        {% if output['meta']['fp_year'] %}
         <tr>
           <th scope="row">Першая публікацыя</th>
           <td>
-            {% if output['meta']["fp_year"] %}
-              {{output['meta']["fp_year"]}}
-            {% endif %}
+              {{output['meta']['fp_year']}}
             </td>
         </tr>
+        {% endif %}
+
+        {% if output['meta']['url'] %}
         <tr>
           <th scope="row">Крыніца</th>
           <td>
-            {% if output['meta']['url'] %}
             <a href="{{output['meta']['url']}}" target="_blank">
               Беларуская палічка
             </a>
-            {% endif %}
             </td>
         </tr>
+        {% endif %}
+
+        {% if output['meta']['tr_lang'] %}
+        <tr>
+          <th scope="row">Мова арыгінала</th>
+          <td>
+              {% if output['meta']['tr_lang'] == "pl"%}Польская{% elif output['meta']['tr_lang'] == "uk" %}Украінская{% elif output['meta']['tr_lang'] == "lat" %}Лацінская{% elif output['meta']['tr_lang'] == "ru" %}Руская{% elif output['meta']['tr_lang'] == "yi" %}Ідыш{% elif output['meta']['tr_lang'] == "de" %}Нямецкая{% endif %}
+            </td>
+        </tr>
+        {% endif %}
+
+        {% if output['meta']['tr_author_name'] %}
+        <tr>
+          <th scope="row">Перакладчык</th>
+          <td>
+              {{output['meta']['tr_author_name']}}
+            </td>
+        </tr>
+        {% endif %}
       </tbody>
     </table>
   </div>
