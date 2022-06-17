@@ -80,11 +80,11 @@ def search_post():
     query = request.form['wsearch']
 
     if len(query.split()) == 1:
-
         sq = 'select id, author_name, title from text_meta where id in (select id from search where wordlist MATCH (?))'
         results = execSql(db, sq, query)
+        num = int(str(len(results))[-1]) #used purely for interface prompts
 
-        return render_template('search.html', output = results, query = query, num = len(results))
+        return render_template('search.html', output = results, query = query, num = num)
 
     elif not query:
         return render_template('search.html', new = True)
