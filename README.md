@@ -1,7 +1,7 @@
-# Корпус беларускай паэзіі XVIII–XX ст. | A Corpus of Belarusian Poetry of 18-20 c.
-## Вэб-інтэрфейс | Web interface
+# Корпус беларускай паэзіі XVIII–XX ст. | Вэб-інтэрфейс
+# A Corpus of Belarusian Poetry of 18-20 c. | Web interface
 
-[Web interface](https://bpc.knem.cc)
+## [Website](https://bpc.knem.cc)
 
 -----
 
